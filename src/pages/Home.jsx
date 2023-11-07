@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getAllBooks } from "../utils/fetch";
 
 export const Home = () => {
   const [allBooks, setAllBooks] = useState([
@@ -19,6 +20,12 @@ export const Home = () => {
       ],
     },
   ]);
+
+  useEffect(() => {
+    getAllBooks().then((bookArray) => {
+      setAllBooks(bookArray);
+    });
+  }, []);
 
   return (
     <div className="__front-page-container__ self-center flex flex-col gap-4 items-center justify-center">
