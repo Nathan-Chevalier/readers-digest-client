@@ -19,11 +19,11 @@ export const getAllCategories = () => {
 };
 
 export const getOneBook = (id) => {
-    return fetch(`http://localhost:8000/${id}`, {
-        headers: {
-            Authorization: `Token ${
-                JSON.parse(localStorage.getItem("book_token")).token
-            }`
-        }
-    }).then((res) => res.json())
-}
+  return fetch(`http://localhost:8000/books/${id}`, {
+    headers: {
+      Authorization: `Token ${
+        JSON.parse(localStorage.getItem("book_token")).token
+      }`,
+    },
+  }).then((res) => res.json());
+};
