@@ -35,5 +35,45 @@ const navigate = useNavigate()
     }
 
 
-  return <>ADD A BOOK</>;
+  return <div className="__book-form-container__ flex flex-col items-center justify-center">
+    <div className="__book-form-header__ text-4xl">ADD A BOOK TO THE COLLECTION</div>
+    <form className="__book-form__ flex flex-col">
+        <div className="__title-author-container__ flex justify-between">
+            <fieldset className="__title__">
+                <label className="">Title:</label>
+                <input type="text" className="__title-input__" placeholder="Input book title..." onChange={(event) => {
+                    const copy = { ...newBook};
+                    copy.title = event.target.value
+                    setNewBook(copy)
+                }}/>
+            </fieldset>
+            <fieldset className="__author__">
+                <label className="">Author:</label>
+                <input type="text" className="__author-input__" placeholder="Input author..." onChange={(event) => {
+                    const copy = { ...newBook}
+                    copy.author = event.target.value
+                    setNewBook(copy)
+                }} />
+            </fieldset>
+        </div>
+        <div className="__isbn-cover-container__ flex justify-between">
+            <fieldset className="__isbn__">
+                <label className="">ISBN Number:</label>
+                <input type="text" className="__ISBN-input__" placeholder="Input ISBN Number..." onChange={(event) => {
+                    const copy = {...newBook}
+                    copy.isbn_number = event.target.value
+                    setNewBook(copy)
+                }} />
+            </fieldset>
+            <fieldset className="__cover__">
+                <label className="">Cover Image URL:</label>
+                <input type="text" className="__cover-input__" placeholder="Input cover URL..." onChange={(event) => {
+                    const copy = {...newBook}
+                    copy.cover_image = event.target.value
+                    setNewBook(copy)
+                }} />
+            </fieldset>
+        </div>
+    </form>
+  </div>;
 };
