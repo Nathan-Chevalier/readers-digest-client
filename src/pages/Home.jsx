@@ -32,16 +32,17 @@ export const Home = () => {
       <div className="__front-page-title__ text-3xl bg-cyan-600 text-white py-4 px-12 rounded-3xl font-bold">
         Welcome to Readers Digest, check out all of these books!
       </div>
-      <div className="__book-list-container__">
+      <div className="__book-list-container__ flex flex-wrap gap-4 items-center justify-between">
         {allBooks.map((book) => {
           return (
             <div
               key={book.id}
-              className="__book-list-card__ flex flex-col gap-2 justify-between items-center"
+              className="__book-list-card__ flex items-center basis-80 flex-wrap justify-center text-center"
             >
               <span className="__book-title__ text-2xl bg-slate-400/20 px-12 py-2">
                 &quot;{book.title}&quot;
               </span>
+              <span className="__author__ font-light">Written by {book.author}</span>
               <img
                 className="__book-image__"
                 src={book.cover_image}
