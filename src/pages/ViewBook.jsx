@@ -50,8 +50,8 @@ export const ViewBook = () => {
       })}
       <div className="__review-header__">Reviews for this book:</div>
       {book?.reviews.map((review) => {
-        return <div className="__review-card__" key={review?.id}>
-            <div className="__review-header__">{review.user.first_name} {review.user.last_name}&apos;s {review.rating}/10 review:</div>
+        return <div className="__review-card__" key={review.id}>
+            <div className="__review-header__">{`${review.user.first_name} ${review.user.last_name}'s ${review.rating}/10 review:`}</div>
             <div className="__review-body__">{review.comment}</div>
             <div className="__review-date__">{review.date}</div>
         </div>;
