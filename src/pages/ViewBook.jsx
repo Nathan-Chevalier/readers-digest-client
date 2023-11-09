@@ -19,6 +19,20 @@ export const ViewBook = () => {
         name: "Not Real Data",
       },
     ],
+    reviews: [
+      {
+        id: 1,
+        book: 1,
+        user: {
+          first_name: "Nathan",
+          last_name: "Chevalier",
+        },
+        rating: 1,
+        comment: "Yep, fetch not working",
+        date: "2023-11-09",
+        is_owner: true,
+      },
+    ],
   });
 
   useEffect(() => {
@@ -26,16 +40,18 @@ export const ViewBook = () => {
       setBook(bookObject);
     });
   }, []);
-  return <div className="__book-container__ flex flex-col items-center justify-center">
-    <div className="__book-title__ text-3xl">{book.title}</div>
-    <div className="__author__ text-2xl">by {book.author}</div>
-    <img src={book.cover_image} alt={book.title}/>
-    {book.categories.map((category) => {
-        return <div key={category.id}>{category.name}</div>
-    })}
-    <div className="__review-header__">Reviews for this book:</div>
-    {book.reviews.map((review) => {
-        return <div key={review?.id}></div>
-    })}
-  </div>;
+  return (
+    <div className="__book-container__ flex flex-col items-center justify-center">
+      <div className="__book-title__ text-3xl">{book.title}</div>
+      <div className="__author__ text-2xl">by {book.author}</div>
+      <img src={book.cover_image} alt={book.title} />
+      {book.categories.map((category) => {
+        return <div key={category.id}>{category.name}</div>;
+      })}
+      <div className="__review-header__">Reviews for this book:</div>
+      {book?.reviews.map((review) => {
+        return <div key={review?.id}></div>;
+      })}
+    </div>
+  );
 };
