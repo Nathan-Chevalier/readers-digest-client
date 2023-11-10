@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getOneBook } from "../utils/fetch";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 export const ViewBook = () => {
   const { bookId } = useParams();
@@ -67,17 +67,17 @@ export const ViewBook = () => {
   }, [bookId]);
 
   return (
-    <div className="__book-container__ flex flex-col items-center justify-center">
-      <div className="__info-review-container__">
-        <div className="__info-container__">
-          <div className="__book-title__ text-3xl">{book.title}</div>
-          <div className="__author__ text-2xl">by {book.author}</div>
-          <img src={book.cover_image} alt={book.title} />
-          {book.categories.map((category) => {
-            return <div key={category.id}>{category.name}</div>;
-          })}
-        </div>
-        <form className="__review-container__">
+    <div className="__book-container__ flex items-center justify-center gap-12">
+      <div className="__info-container__ flex flex-col items-center">
+        <div className="__book-title__ text-3xl">{book.title}</div>
+        <div className="__author__ text-2xl">by {book.author}</div>
+        <img src={book.cover_image} alt={book.title} />
+        {book.categories.map((category) => {
+          return <div key={category.id}>{category.name}</div>;
+        })}
+      </div>
+      <div className="__review-container">
+        <form className="__review-form__">
           <fieldset className="__rating__">
             <label>Your Rating:</label>
             <select
@@ -117,18 +117,17 @@ export const ViewBook = () => {
             Save Review
           </button>
         </form>
+        <div className="__review-header__">Reviews for this book:</div>
+        {book?.reviews.map((review) => {
+          return (
+            <div className="__review-card__" key={review.id}>
+              <div className="__review-header__">{`${review.user.first_name} ${review.user.last_name}'s ${review.rating}/10 review:`}</div>
+              <div className="__review-body__">{review.comment}</div>
+              <div className="__review-date__">{review.date}</div>
+            </div>
+          );
+        })}
       </div>
-
-      <div className="__review-header__">Reviews for this book:</div>
-      {book?.reviews.map((review) => {
-        return (
-          <div className="__review-card__" key={review.id}>
-            <div className="__review-header__">{`${review.user.first_name} ${review.user.last_name}'s ${review.rating}/10 review:`}</div>
-            <div className="__review-body__">{review.comment}</div>
-            <div className="__review-date__">{review.date}</div>
-          </div>
-        );
-      })}
     </div>
   );
 };
